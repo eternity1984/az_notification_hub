@@ -1,3 +1,7 @@
+## 1.2.0
+
+- Add `getInstallationId()` and `getPushChannel()` methods
+
 ## 1.1.3
 
 - Fix serialization limit error for Android
