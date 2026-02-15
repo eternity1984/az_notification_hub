@@ -12,18 +12,14 @@ class AzureNotificationHub {
   static AzureNotificationHub get instance => _instance;
 
   /// [Stream] for messages received while the app is in the foreground.
-  Stream<Map<String, dynamic>> get onMessage =>
-      AzureNotificationHubPlatform.onMessage.stream;
+  Stream<Map<String, dynamic>> get onMessage => AzureNotificationHubPlatform.onMessage.stream;
 
   /// [Stream] for message that caused the app to open.
-  Stream<Map<String, dynamic>> get onMessageOpenedApp =>
-      AzureNotificationHubPlatform.onMessageOpenedApp.stream;
+  Stream<Map<String, dynamic>> get onMessageOpenedApp => AzureNotificationHubPlatform.onMessageOpenedApp.stream;
 
   /// Registers a callback to handle background messages.
-  Future<void> registerBackgroundMessageHandler(
-      BackgroundMessageHandler handler) {
-    return AzureNotificationHubPlatform.instance
-        .registerBackgroundMessageHandler(handler);
+  Future<void> registerBackgroundMessageHandler(BackgroundMessageHandler handler) {
+    return AzureNotificationHubPlatform.instance.registerBackgroundMessageHandler(handler);
   }
 
   /// Initializes the plugin and requests notification permissions.
@@ -79,6 +75,17 @@ class AzureNotificationHub {
   /// Get the push channel for the device.
   Future<String> getPushChannel() {
     return AzureNotificationHubPlatform.instance.getPushChannel();
+  }
+
+  /// Get the initial message that caused the app to open from a terminated state.
+  ///
+  /// Returns the notification payload if the app was launched by tapping a notification.
+  /// Returns null if the app was not launched by a notification tap.
+  ///
+  /// This method is useful for handling "cold start" scenarios where the app
+  /// was completely terminated and the user tapped on a notification to reopen it.
+  Future<Map<String, dynamic>?> getInitialMessage() {
+    return AzureNotificationHubPlatform.instance.getInitialMessage();
   }
 
   /// Set the user ID for the device.
