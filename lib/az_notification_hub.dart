@@ -26,11 +26,19 @@ class AzureNotificationHub {
         .registerBackgroundMessageHandler(handler);
   }
 
-  /// Intializes the plugin and requests notification permissions.
+  /// Initializes the plugin and requests notification permissions.
   Future<void> start() async {
     await Permission.notification.request();
 
     return await AzureNotificationHubPlatform.instance.start();
+  }
+
+  /// Initializes the plugin with provided hub information and requests notification permissions.
+  Future<void> startWithHubInfo(String connectionString, String hubName) async {
+    await Permission.notification.request();
+
+    return await AzureNotificationHubPlatform.instance
+        .startWithHubInfo(connectionString, hubName);
   }
 
   /// Add tags for the device. If one of the tags already exists, it will be ignored.
