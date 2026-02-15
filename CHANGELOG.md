@@ -1,3 +1,8 @@
+## 1.4.0
+
+- Add ability to initialize the hub connection during runtime
+- Add ability to get initial (cold start) notification on iOS
+
 ## 1.3.0
 
 - Add user id management
